@@ -1,0 +1,26 @@
+apiVersion: apps/v1 #Tells Kubernetes which API version this resource belongs to.
+kind: Deployment #A Deployment manages Pods and ensures the desired number of replicas are running.
+metadata:
+  name: llmops-app #This is the name of the Deployment
+spec:
+  replicas: 2 #Kubernetes will always try to keep 2 Pods alive.
+  selector:
+    matchLabels:
+      app: llmops-app #This tells the Deployment which Pods belong to it.
+  template: #This describes the Pod template (how each Pod should be built).
+    metadata:
+      labels:
+        app: llmops-app #Every Pod created by this Deployment gets the label app: llmops-app,this must match the selector above
+    spec:
+      containers: #Defines the containers that will run inside each Pod
+      - name: llmops-app #Container’s internal name. Used for identification in logs, metrics, etc
+        image: dataguru97/studybuddy:v15 #Docker image to pull from Docker Hub (or another registry)
+        ports:
+        - containerPort: 8501 #The container exposes port 8501
+        env: #Defines environment variables for the container.
+        - name: GROQ_API_KEY #GROQ_API_KEY will be injected into the container
+          valueFrom: #valueFrom.secretKeyRef means the value is taken from a Kubernetes Secret.
+            secretKeyRef:
+              name: groq-api-secret #the name of the Secret object.
+              key: GROQ_API_KEY #the key inside that Secret.
+
