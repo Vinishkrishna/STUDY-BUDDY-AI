@@ -1,4 +1,5 @@
 from langchain.prompts import PromptTemplate
+#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
 
 mcq_prompt_template = PromptTemplate(
     template=(
