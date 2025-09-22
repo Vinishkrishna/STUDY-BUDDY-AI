@@ -14,7 +14,7 @@ spec:
     spec:
       containers: #Defines the containers that will run inside each Pod
       - name: llmops-app #Container’s internal name. Used for identification in logs, metrics, etc
-        image: dataguru97/studybuddy:v15 #Docker image to pull from Docker Hub (or another registry)
+        image: rvinishkrishna/studybuddy:latest #Docker image to pull from Docker Hub (or another registry)
         ports:
         - containerPort: 8501 #The container exposes port 8501
         env: #Defines environment variables for the container.
