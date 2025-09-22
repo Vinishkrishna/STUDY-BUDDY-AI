@@ -1,6 +1,5 @@
 from langchain.prompts import PromptTemplate
 
-
 mcq_prompt_template = PromptTemplate(
     template=(
         "Generate a {difficulty} multiple-choice question about {topic}.\n\n"
