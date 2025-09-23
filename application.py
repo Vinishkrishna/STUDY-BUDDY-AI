@@ -83,8 +83,8 @@ def main():
                         st.success(f"✅ Question {question_num} : {result['question']}")
                     else:
                         st.error(f"❌ Question {question_num} : {result['question']}")
-                        st.write(f"Your answer : {result["user_answer"]}")
-                        st.write(f"Correct answer : {result["correct_answer"]}")
+                        st.write(f"Your answer : {result['user_answer']}")
+                        st.write(f"Correct answer : {result['correct_answer']}")
 
                     st.markdown("-------")
                 
