@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     echo 'Building Docker image...'
-                    dockerImage = docker.build("${DOCKER_HUB_REPO}:${IMAGE_TAG}")
+                    dockerImage = docker.build("${DOCKER_HUB_REPO}:${IMAGE_TAG}", "--no-cache .")
                 }
             }
         }
