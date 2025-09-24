@@ -11,7 +11,19 @@ pipeline {
                 echo 'Checking out code from GitHub...'
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github-token', url: 'https://github.com/Vinishkrishna/STUDY-BUDDY-AI.git']]) //giving partial access to jenkins ,so that it can copy paste code from github
             }
-        }        
+        }
+        stage('Check for changes') { 
+            steps {
+                script {
+                    lastCommit = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+                    if (lastCommit == currentBuild.previousBuild?.getEnvironment()['GIT_COMMIT']) {
+                        echo "No new commits. Skipping build."
+                        currentBuild.result = 'NOT_BUILT'
+                        error("Skipping build as there are no code changes.")
+                    }
+                }
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 script {
