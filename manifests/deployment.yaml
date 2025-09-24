@@ -14,7 +14,7 @@ spec:
     spec:
       containers: #Defines the containers that will run inside each Pod
       - name: llmops-app #Container’s internal name. Used for identification in logs, metrics, etc
-        image: rvinishkrishna/studybuddy:v18
+        image: rvinishkrishna/studybuddy:v19
         ports:
         - containerPort: 8501 #The container exposes port 8501
         env: #Defines environment variables for the container.
